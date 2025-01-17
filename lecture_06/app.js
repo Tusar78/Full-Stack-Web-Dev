@@ -55,13 +55,13 @@
 
 // console.log(arr);
 
-const arr = [
-	{ id: 1, value: 10 },
-	{ id: 2, value: 20 },
-	{ id: 3, value: 30 },
-	{ id: 4, value: 40 },
-	{ id: 5, value: 50 }
-]
+// const arr = [
+// 	{ id: 1, value: 10 },
+// 	{ id: 2, value: 20 },
+// 	{ id: 3, value: 30 },
+// 	{ id: 4, value: 40 },
+// 	{ id: 5, value: 50 }
+// ]
 
 // for (let i = 0; i < arr.length; i++) {
 //     if (arr[i].id == 3) {
@@ -115,19 +115,48 @@ const arr = [
 // console.log(sum);
 
 
-const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
+// const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
 
-const result = numbers.reduce((acc, curr, index) => {
-    if (index === 0) {
-        acc += '['
-    }
-    if(curr) {
-        acc += curr.toString() + (index < numbers.length - 1 ? ', ': '');
-    }
-    if (index === numbers.length - 1) {
-        acc += ']'
+// const result = numbers.reduce((acc, curr, index) => {
+//     if (index === 0) {
+//         acc += '['
+//     }
+//     if(curr) {
+//         acc += curr.toString() + (index < numbers.length - 1 ? ', ': '');
+//     }
+//     if (index === numbers.length - 1) {
+//         acc += ']'
+//     }
+//     return acc;
+// }, '')
+
+// console.log(result);
+
+// const result = numbers.reduce((acc, curr) => {
+//     if (curr) {
+//         acc.push(curr.toString())
+//     }
+//     return acc;
+// }, [])
+
+// console.log(result);
+
+const arr = [];
+for (let i = 0; i < 5000000; i++) {
+    arr.push(i)   
+}
+
+console.time("Not-optimized")
+const modifiedArr = arr.filter(a => a % 2 == 0).map(a => a * 2);
+console.timeEnd("Not-optimized")
+
+console.time("Not-optimized")
+const modifiedArr2 = arr.reduce((acc, cur) => {
+    if (cur % 2 == 0) {
+        acc.push(cur * 2)
     }
     return acc;
-}, '')
+}, [])
+console.timeEnd("Not-optimized")
 
-console.log(result);
+
