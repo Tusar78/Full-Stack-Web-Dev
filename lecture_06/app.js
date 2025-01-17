@@ -117,8 +117,10 @@ const arr = [
 
 const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
 
-const result = numbers.reduce((acc, curr) => {
-    acc += curr.toString();
+const result = numbers.reduce((acc, curr, index) => {
+    if(curr) {
+        acc += curr.toString() + (index < numbers.length - 1 ? ', ': '');
+    }
     return acc;
 }, '')
 
