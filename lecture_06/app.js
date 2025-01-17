@@ -63,12 +63,63 @@ const arr = [
 	{ id: 5, value: 50 }
 ]
 
-for (let i = 0; i < arr.length; i++) {
-    if (arr[i].id == 3) {
-        arr[i].value = 300
-    }    
-}
+// for (let i = 0; i < arr.length; i++) {
+//     if (arr[i].id == 3) {
+//         arr[i].value = 300
+//     }    
+// }
 
-console.log(arr);
+// console.log(arr);
 
 
+// const updatedArray = arr.find(item => item.id == 3)
+// updatedArray.value = 300;
+
+// console.log(arr);
+// console.log(updatedArray);
+
+// const a = { a: 10 };
+// const b = { a: 10 };
+// const c = a;
+// console.log(a === c); 
+// console.log(a == b);
+
+// // delete using filter
+// const updatedArr = arr.filter(item => item.id !== 3);
+// console.log(updatedArr);
+// console.log(arr);
+
+// const dlIndx = arr.findIndex(a => a.id === 3);
+// arr.splice(dlIndx, 1)
+// console.log(arr);
+
+
+// const updatedArr1 = arr.map(item => item.id = 'tusar');
+// console.log(updatedArr1);
+
+// const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
+
+// // const filteredArr = numbers.filter(num => num)
+// // console.log(filteredArr);
+
+// const filteredArray = numbers.filter(v => v).map(n => n.toString());
+// console.log(filteredArray);
+
+
+// const numbers = [1, 2, 3, 4, 5, 6];
+
+// const sum = numbers.reduce((curr, acc) => {
+//     return curr + acc;    
+// }, 0)
+
+// console.log(sum);
+
+
+const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
+
+const result = numbers.reduce((acc, curr) => {
+    acc += curr.toString();
+    return acc;
+}, '')
+
+console.log(result);
