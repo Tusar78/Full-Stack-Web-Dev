@@ -66,11 +66,10 @@
 // for (let i = 0; i < arr.length; i++) {
 //     if (arr[i].id == 3) {
 //         arr[i].value = 300
-//     }    
+//     }
 // }
 
 // console.log(arr);
-
 
 // const updatedArray = arr.find(item => item.id == 3)
 // updatedArray.value = 300;
@@ -81,7 +80,7 @@
 // const a = { a: 10 };
 // const b = { a: 10 };
 // const c = a;
-// console.log(a === c); 
+// console.log(a === c);
 // console.log(a == b);
 
 // // delete using filter
@@ -92,7 +91,6 @@
 // const dlIndx = arr.findIndex(a => a.id === 3);
 // arr.splice(dlIndx, 1)
 // console.log(arr);
-
 
 // const updatedArr1 = arr.map(item => item.id = 'tusar');
 // console.log(updatedArr1);
@@ -105,15 +103,13 @@
 // const filteredArray = numbers.filter(v => v).map(n => n.toString());
 // console.log(filteredArray);
 
-
 // const numbers = [1, 2, 3, 4, 5, 6];
 
 // const sum = numbers.reduce((curr, acc) => {
-//     return curr + acc;    
+//     return curr + acc;
 // }, 0)
 
 // console.log(sum);
-
 
 // const numbers = [1, 2, 3, 4, false, '', NaN, 5, 6];
 
@@ -141,22 +137,47 @@
 
 // console.log(result);
 
-const arr = [];
-for (let i = 0; i < 5000000; i++) {
-    arr.push(i)   
-}
+// const arr = [];
+// for (let i = 0; i < 5000000; i++) {
+//     arr.push(i)
+// }
 
-console.time("Not-optimized")
-const modifiedArr = arr.filter(a => a % 2 == 0).map(a => a * 2);
-console.timeEnd("Not-optimized")
+// console.time("Not-optimized")
+// const modifiedArr = arr.filter(a => a % 2 == 0).map(a => a * 2);
+// console.timeEnd("Not-optimized")
 
-console.time("Not-optimized")
-const modifiedArr2 = arr.reduce((acc, cur) => {
-    if (cur % 2 == 0) {
-        acc.push(cur * 2)
+// console.time("Not-optimized")
+// const modifiedArr2 = arr.reduce((acc, cur) => {
+//     if (cur % 2 == 0) {
+//         acc.push(cur * 2)
+//     }
+//     return acc;
+// }, [])
+// console.timeEnd("Not-optimized")
+
+// Creating my reduce function
+
+// const axios = require("axios").defaults;
+
+const myReduce = (arr, cb, init) => {
+  let acc = init;
+  for (let i = 0; i < arr.length; i++) {
+    cb(acc, arr[i], i, arr);    
+  }
+
+  return acc;
+};
+
+const arr = [1, 2, '', false, 3, NaN, false, 4, 5, NaN, 6];
+const result = myReduce(arr, (acc, curr) => {
+    if (curr) {
+        acc.push(curr.toString())
     }
+
     return acc;
 }, [])
-console.timeEnd("Not-optimized")
+
+console.log(result);
+
 
 
