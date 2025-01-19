@@ -185,13 +185,13 @@ const getData = async () => {
   const response = await fetch(url);
   const data = await response.json();
 
-  const result = data.slice(0, 10).map((item) => {
-    return {
-      userId: item.userId,
-      id: item.id,
-      title: item.title,
-    };
-  });
+  const result = data.slice(0, 5).reduce((acc, curr) => {
+    acc[curr.id] = {
+        ...curr
+    }
+    delete curr.body
+    return acc;
+  }, {});
 
   return result;
 };
