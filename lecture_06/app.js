@@ -233,15 +233,38 @@ const names = [
 // 	F: ['Fahim Faisal', 'Feroz Khan'],
 // };
 
+// const namesGroup = names.reduce((acc, curr) => {
+//     const firstLetter = curr[0].toUpperCase();
+//     if (firstLetter in acc) {
+//         acc[curr[0]].push(curr);
+//     } else {
+//         acc[curr[0]] = [curr];
+//     }
+    
+//     return acc;
+// }, {})
+
+// console.log(namesGroup);
+
+
 const namesGroup = names.reduce((acc, curr) => {
     const firstLetter = curr[0].toUpperCase();
     if (firstLetter in acc) {
-        acc[curr[0]].push(curr);
+        acc[curr[0]].push(curr)
     } else {
-        acc[curr[0]] = [curr];
+        acc[curr[0]] = [curr]
     }
-    
+
     return acc;
 }, {})
 
 console.log(namesGroup);
+
+for (const key in namesGroup) {
+    console.log(key);
+    console.log('-------');
+    namesGroup[key].forEach(name => {
+        console.log(name);        
+    });
+    console.log('\n');
+}
