@@ -159,25 +159,41 @@
 
 // const axios = require("axios").defaults;
 
-const myReduce = (arr, cb, init) => {
-  let acc = init;
-  for (let i = 0; i < arr.length; i++) {
-    cb(acc, arr[i], i, arr);    
-  }
+// const myReduce = (arr, cb, init) => {
+//   let acc = init;
+//   for (let i = 0; i < arr.length; i++) {
+//     cb(acc, arr[i], i, arr);
+//   }
 
-  return acc;
+//   return acc;
+// };
+
+// const arr = [1, 2, '', false, 3, NaN, false, 4, 5, NaN, 6];
+// const result = myReduce(arr, (acc, curr) => {
+//     if (curr) {
+//         acc.push(curr.toString())
+//     }
+
+//     return acc;
+// }, [])
+
+// console.log(result);
+
+const url = "https://jsonplaceholder.typicode.com/posts";
+
+const getData = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  const result = data.slice(0, 10).map((item) => {
+    return {
+      userId: item.userId,
+      id: item.id,
+      title: item.title,
+    };
+  });
+
+  return result;
 };
 
-const arr = [1, 2, '', false, 3, NaN, false, 4, 5, NaN, 6];
-const result = myReduce(arr, (acc, curr) => {
-    if (curr) {
-        acc.push(curr.toString())
-    }
-
-    return acc;
-}, [])
-
-console.log(result);
-
-
-
+getData().then((data) => console.log(data)).catch(e => console.log(e))
