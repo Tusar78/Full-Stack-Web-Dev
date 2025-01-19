@@ -179,21 +179,69 @@
 
 // console.log(result);
 
-const url = "https://jsonplaceholder.typicode.com/posts";
+// const url = "https://jsonplaceholder.typicode.com/posts";
 
-const getData = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
+// const getData = async () => {
+//   const response = await fetch(url);
+//   const data = await response.json();
 
-  const result = data.slice(0, 5).reduce((acc, curr) => {
-    acc[curr.id] = {
-        ...curr
+//   const result = data.slice(0, 5).reduce((acc, curr) => {
+//     acc[curr.id] = {
+//       ...curr,
+//     };
+//     delete acc[curr.id].body;
+//     delete acc[curr.id].userId;
+//     return acc;
+//   }, {});
+
+//   return result;
+// };
+
+// getData()
+//   .then((data) => displayData(data))
+//   .catch((e) => console.log(e));
+
+// const displayData = data => {
+//     console.log(data);
+// }
+
+// displayData();
+
+const names = [
+	'Ayman',
+	'Abu Rayhan',
+	'Anik',
+	'Elias Emon',
+	'Engr. Sabbir',
+	'Fahim Faisal',
+	'Feroz Khan',
+	'Habib',
+	'HM Azizul',
+	'Hridoy Saha',
+	'Jahid Hassan',
+	'Johir',
+	'Md Al-Amin',
+	'Md Arafatul',
+	'Md Ashraful',
+	'Parvez',
+];
+
+// This avobe array conver like below
+// const namesGroup = {
+// 	A: ['Ayman', 'Abu Rayhan', 'Anik'],
+// 	E: ['Elias Emon', 'Engr. Sabbir'],
+// 	F: ['Fahim Faisal', 'Feroz Khan'],
+// };
+
+const namesGroup = names.reduce((acc, curr) => {
+    const firstLetter = curr[0].toUpperCase();
+    if (firstLetter in acc) {
+        acc[curr[0]].push(curr);
+    } else {
+        acc[curr[0]] = [curr];
     }
-    delete curr.body
+    
     return acc;
-  }, {});
+}, {})
 
-  return result;
-};
-
-getData().then((data) => console.log(data)).catch(e => console.log(e))
+console.log(namesGroup);
