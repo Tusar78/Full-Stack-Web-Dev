@@ -208,22 +208,22 @@
 // displayData();
 
 const names = [
-	'Ayman',
-	'Abu Rayhan',
-	'Anik',
-	'Elias Emon',
-	'Engr. Sabbir',
-	'Fahim Faisal',
-	'Feroz Khan',
-	'Habib',
-	'HM Azizul',
-	'Hridoy Saha',
-	'Jahid Hassan',
-	'Johir',
-	'Md Al-Amin',
-	'Md Arafatul',
-	'Md Ashraful',
-	'Parvez',
+  "Ayman",
+  "Abu Rayhan",
+  "Anik",
+  "Elias Emon",
+  "Engr. Sabbir",
+  "Fahim Faisal",
+  "Feroz Khan",
+  "Habib",
+  "HM Azizul",
+  "Hridoy Saha",
+  "Jahid Hassan",
+  "Johir",
+  "Md Al-Amin",
+  "Md Arafatul",
+  "Md Ashraful",
+  "Parvez",
 ];
 
 // This avobe array conver like below
@@ -240,31 +240,123 @@ const names = [
 //     } else {
 //         acc[curr[0]] = [curr];
 //     }
-    
+
 //     return acc;
 // }, {})
 
 // console.log(namesGroup);
 
+// const namesGroup = names.reduce((acc, curr) => {
+//   const firstLetter = curr[0].toUpperCase();
+//   if (firstLetter in acc) {
+//     acc[curr[0]].push(curr);
+//   } else {
+//     acc[curr[0]] = [curr];
+//   }
 
-const namesGroup = names.reduce((acc, curr) => {
-    const firstLetter = curr[0].toUpperCase();
-    if (firstLetter in acc) {
-        acc[curr[0]].push(curr)
-    } else {
-        acc[curr[0]] = [curr]
-    }
+//   return acc;
+// }, {});
 
-    return acc;
-}, {})
+// console.log(namesGroup);
 
-console.log(namesGroup);
+// for (const key in namesGroup) {
+//   console.log(key);
+//   console.log("-------");
+//   namesGroup[key].forEach((name) => {
+//     console.log(name);
+//   });
+//   console.log("\n");
+// }
 
-for (const key in namesGroup) {
-    console.log(key);
-    console.log('-------');
-    namesGroup[key].forEach(name => {
-        console.log(name);        
-    });
-    console.log('\n');
+// const monitor = {
+//   brand: "HP",
+//   price: 12500,
+//   color: "Silver",
+//   gameingModd() {
+//     console.log("Gaming Mood Start");
+//   },
+//   powerOn() {
+//     console.log("Power On");
+//   },
+// };
+
+// Object.freeze(monitor)
+
+// monitor.model = 'Hp2f'
+// console.log(monitor);
+
+// const objectToArr = Object.entries(monitor);
+// console.log(objectToArr);
+
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }
+
+const students = [
+  {
+    id: "abc1d489-4ee9-4301-b71a-749207e60643",
+    name: "Aopo Roy",
+    email: "aopo@gmail.com",
+  },
+  {
+    id: "facb5a2e-16d9-48ef-ac60-8cbc7f38215f",
+    name: "Salman Mahmud",
+    email: "salman@gmail.com",
+  },
+  {
+    id: "6717c4a9-205a-4b70-8da8-15d1448f61d6",
+    name: "Jannatul Mawal Jannt",
+    email: "jannat@gmail.com",
+  },
+  {
+    id: "daefbbf4-d3fa-4189-96e7-735f85482348",
+    name: "Tasnia Sultana Asha",
+    email: "asha@gmail.com",
+  },
+];
+
+// create a new data
+students.push({
+  id: "0a2c956c-a9f4-48b9-83fa-551b432dfb2b",
+  name: "Fahim Faisal",
+  email: "fahim@test.com",
+});
+
+// Updated Data
+const idToUpdate = '0a2c956c-a9f4-48b9-83fa-551b432dfb2b';
+const updatedData = {
+  name: 'Tusar',
+  email: 'tusar@gmail.com'
+}
+
+// let updateObj = students.find(obj => obj.id === idToUpdate);
+// updateObj = {
+//   id: idToUpdate,
+//   ...updatedData
+// }
+// console.log(updateObj);
+
+const findIdex = students.findIndex(item => item.id === idToUpdate);
+students[findIdex] = {
+  ...students[findIdex],
+  ...updatedData
+}
+
+// Delete using splice
+const deletedIndex = students.findIndex(item => item.name === 'Salman Mahmud')
+students.splice(deletedIndex, 1);
+
+// Delete Using Filter
+const filteredStd = students.filter(item => item.name !== 'Salman Mahmud');
+console.log(filteredStd);
+
+
+
+
+
+console.log(students);
+
