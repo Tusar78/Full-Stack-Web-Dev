@@ -125,18 +125,34 @@ getUserNameFromComment('Tusar')
 //   })
 //   .catch((e) => console.log(e));
 
-const get = (url) => Promise.resolve(url);
+// const get = (url) => Promise.resolve(url);
 
-const getUserName = async (username) => {
-  try {
-    const mainUser = await get(`/users?username=${username}`);
-    const posts = await get(`/posts?user_id=${mainUser.id}`);
-    const comments = await get(`/comments?post_id=${posts[0].id}`);
-    const user = await get(`/user?username=${comments[0].username}`);
-    console.log(user);
-  } catch (e) {
-    console.log(e);
-  }
+// const getUserName = async (username) => {
+//   try {
+//     const mainUser = await get(`/users?username=${username}`);
+//     const posts = await get(`/posts?user_id=${mainUser.id}`);
+//     const comments = await get(`/comments?post_id=${posts[0].id}`);
+//     const user = await get(`/user?username=${comments[0].username}`);
+//     console.log(user);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+// getUserName("Tusar");
+
+const axios = require("axios");
+
+const USERS = `https://jsonplaceholder.typicode.com/users`;
+const COMMENTS = `https://jsonplaceholder.typicode.com/comments`;
+const POST = `https://jsonplaceholder.typicode.com/posts`;
+
+const getComments = async (name) => {
+  const { data: user } = await axios.get(`${USERS}?username=${name}`);  
+  const {data: posts} = await axios.get(`${POST}?userId=${user[0].id}`)
+  const {data: comments} = await axios.get(`${COMMENTS}?postId=${posts[0].id}`)
+  console.log(comments[0].email);  
+  
 };
 
-getUserName("Tusar");
+getComments("Delphine");
