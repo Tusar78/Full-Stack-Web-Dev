@@ -55,23 +55,35 @@ getUserNameFromComment('Tusar')
 */
 
 
-const promise = new Promise((resolve, reject) => {
-  const isSuccess = true;
+// const promise = new Promise((resolve, reject) => {
+//   const isSuccess = true;
 
-  setTimeout(() => {
-    if (isSuccess) {
-      resolve({id: 1, name: 'Tusar'});
-    } else {
-      reject("Task failed!");
-    }
-  }, 1000);
-});
+//   setTimeout(() => {
+//     if (isSuccess) {
+//       resolve({id: 1, name: 'Tusar'});
+//     } else {
+//       reject("Task failed!");
+//     }
+//   }, 1000);
+// });
 
-promise
-  .then((result) => process(result))
-  .catch((error) => console.log(error));
+// promise
+//   .then((result) => process(result))
+//   .catch((error) => console.log(error));
 
 
-const process = data => {
-    console.log(data);    
-}
+// const process = data => {
+//     console.log(data);    
+// }
+
+// function wait(ms) {
+//     const promise = new Promise(resolve => {
+//         setTimeout(resolve, ms);
+//     })
+
+//     return promise
+// }
+
+// wait(1000).then(()=> console.log('Done 1000'))
+// wait(2000).then(()=> console.log('Done 2000'))
+// wait(3000).then(()=> console.log('Done 3000'))
