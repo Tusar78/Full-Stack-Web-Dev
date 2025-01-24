@@ -93,34 +93,50 @@ getUserNameFromComment('Tusar')
  * /users?username=[username]
  */
 
-const get = (url) => {
-  const promise = new Promise((resolve, reject) => {
-    const isSuccess = true;
-    if (url) {
-      resolve(url);
-    } else {
-      reject();
-    }
-  });
+// const get = (url) => {
+//   const promise = new Promise((resolve, reject) => {
+//     const isSuccess = true;
+//     if (url) {
+//       resolve(url);
+//     } else {
+//       reject();
+//     }
+//   });
 
-  return promise;
+//   return promise;
+// };
+
+// // promise.then(data => console.log(data))
+
+// get(`/users?username=tusar`)
+//   .then((user) => {
+//     return get(`/posts?user_id=${user.id}`);
+//   })
+//   .then((posts) => {
+//     const lastPost = posts[0];
+//     return get(`/comments?post_id=${lastPost.id}`);
+//   })
+//   .then((comments) => {
+//     const lastComment = comments[0];
+//     return get(`/users?username=${lastComment.username}`);
+//   })
+//   .then((user) => {
+//     console.log(user);
+//   })
+//   .catch((e) => console.log(e));
+
+const get = (url) => Promise.resolve(url);
+
+const getUserName = async (username) => {
+  try {
+    const mainUser = await get(`/users?username=${username}`);
+    const posts = await get(`/posts?user_id=${mainUser.id}`);
+    const comments = await get(`/comments?post_id=${posts[0].id}`);
+    const user = await get(`/user?username=${comments[0].username}`);
+    console.log(user);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-// promise.then(data => console.log(data))
-
-get(`users?username=tusar`)
-  .then((user) => {
-    return get(`/posts?user_id=${user.id}`);
-  })
-  .then((posts) => {
-    const lastPost = posts[0];
-    return get(`/comments?post_id=${lastPost.id}`);
-  })
-  .then((comments) => {
-    const lastComment = comments[0];
-    return get(`/users?username=${lastComment.username}`);
-  })
-  .then((user) => {
-    console.log(user);
-  })
-  .catch((e) => console.log(e));
+getUserName("Tusar");
