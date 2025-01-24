@@ -54,7 +54,6 @@ function getUserNameFromComment(username) {
 getUserNameFromComment('Tusar')
 */
 
-
 // const promise = new Promise((resolve, reject) => {
 //   const isSuccess = true;
 
@@ -71,9 +70,8 @@ getUserNameFromComment('Tusar')
 //   .then((result) => process(result))
 //   .catch((error) => console.log(error));
 
-
 // const process = data => {
-//     console.log(data);    
+//     console.log(data);
 // }
 
 // function wait(ms) {
@@ -87,3 +85,42 @@ getUserNameFromComment('Tusar')
 // wait(1000).then(()=> console.log('Done 1000'))
 // wait(2000).then(()=> console.log('Done 2000'))
 // wait(3000).then(()=> console.log('Done 3000'))
+
+/**
+ * /users?username=[username]
+ * /posts?user_id=[user_id]
+ * /comments?post_id=[post_id]
+ * /users?username=[username]
+ */
+
+const get = (url) => {
+  const promise = new Promise((resolve, reject) => {
+    const isSuccess = true;
+    if (url) {
+      resolve(url);
+    } else {
+      reject();
+    }
+  });
+
+  return promise;
+};
+
+// promise.then(data => console.log(data))
+
+get(`users?username=tusar`)
+  .then((user) => {
+    return get(`/posts?user_id=${user.id}`);
+  })
+  .then((posts) => {
+    const lastPost = posts[0];
+    return get(`/comments?post_id=${lastPost.id}`);
+  })
+  .then((comments) => {
+    const lastComment = comments[0];
+    return get(`/users?username=${lastComment.username}`);
+  })
+  .then((user) => {
+    console.log(user);
+  })
+  .catch((e) => console.log(e));
