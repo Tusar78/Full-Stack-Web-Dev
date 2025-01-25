@@ -56,15 +56,61 @@
     
 // }
  
-function* range(start = 0, stop = 100, step=5) {
-    for (i = start; i < stop; i += step) {
-        yield i;
+// function* range(start = 0, stop = 100, step=5) {
+//     for (i = start; i < stop; i += step) {
+//         yield i;
+//     }
+// }
+// const rangeIt = range(1, 20, 5);
+// console.log(rangeIt.next());
+// console.log(rangeIt.next());
+// console.log(rangeIt.next());
+// console.log(rangeIt.next());
+// console.log(rangeIt.next());
+
+
+function* idGenerator() {
+    let i = 1;
+    while (true) {
+        yield i++;
     }
 }
-const rangeIt = range(1, 20, 5);
-console.log(rangeIt.next());
-console.log(rangeIt.next());
-console.log(rangeIt.next());
-console.log(rangeIt.next());
-console.log(rangeIt.next());
 
+const personId = idGenerator();
+
+const std1 = {
+    id: personId.next(),
+    name: 'Tusar',
+    age: 25,
+}
+const std2 = {
+    id: personId.next(),
+    name: 'Aopo',
+    age: 24,
+}
+const std3 = {
+    id: personId.next(),
+    name: 'Salman',
+    age: 23,
+}
+
+const myF = () => {
+    const neA = [];
+    for (let i = 0; i < 1000; i++) {
+        neA.push(i);
+    }
+
+    return neA;
+}
+myF()
+
+const std4 = {
+    id: personId.next().value,
+    name: 'Jannat',
+    age: 23
+}
+
+console.log(std1);
+console.log(std2);
+console.log(std3);
+console.log(std4);
