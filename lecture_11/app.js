@@ -21,40 +21,50 @@
 // console.log(myNameIterator.next());
 
 
-const range = {
-    start: 0,
-    stop: 50,
-    step: 5
-}
+// const range = {
+//     start: 0,
+//     stop: 50,
+//     step: 5
+// }
 
-range[Symbol.iterator] = function() {
-    let current = this.start
-    let stop = this.stop;
-    let step = this.step;
+// range[Symbol.iterator] = function() {
+//     let current = this.start
+//     let stop = this.stop;
+//     let step = this.step;
 
-    return {      
-        next(){
-            const obj = {
-                value: current > stop ? undefined : current,
-                done: current > stop
-            }
-            current += step;
-            return obj;
-        }
+//     return {      
+//         next(){
+//             const obj = {
+//                 value: current > stop ? undefined : current,
+//                 done: current > stop
+//             }
+//             current += step;
+//             return obj;
+//         }
+//     }
+// }
+
+// const myIterator = range[Symbol.iterator]();
+// console.log(myIterator.next());
+// console.log(myIterator.next());
+// console.log(myIterator.next());
+// console.log(myIterator.next());
+// console.log(myIterator.next());
+
+// for (const v of range) {
+//     console.log(v);
+    
+// }
+ 
+function* range(start = 0, stop = 100, step=5) {
+    for (i = start; i < stop; i += step) {
+        yield i;
     }
 }
-
-const myIterator = range[Symbol.iterator]();
-console.log(myIterator.next());
-console.log(myIterator.next());
-console.log(myIterator.next());
-console.log(myIterator.next());
-console.log(myIterator.next());
-
-for (const v of range) {
-    console.log(v);
-    
-}
- 
-
+const rangeIt = range(1, 20, 5);
+console.log(rangeIt.next());
+console.log(rangeIt.next());
+console.log(rangeIt.next());
+console.log(rangeIt.next());
+console.log(rangeIt.next());
 
